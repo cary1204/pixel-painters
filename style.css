@@ -1,0 +1,26 @@
+body {
+    font-family: sans-serif;
+    padding: 2em;
+    background: #7fc2e9;
+    color: #fff;
+  }
+  
+  textarea,
+  input {
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+  }
+  
+  button {
+    margin-top: 10px;
+    padding: 10px 20px;
+  }
+  
+  #output {
+    margin-top: 20px;
+    background: #6d91a5;
+    padding: 15px;
+    border-radius: 5px;
+  }
+  
