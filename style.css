@@ -1,26 +1,22 @@
 body {
     font-family: sans-serif;
-    padding: 2em;
-    background: #7fc2e9;
-    color: #fff;
+    text-align: center;
+    background: #f0f0f0;
   }
   
-  textarea,
-  input {
-    width: 100%;
-    margin-top: 10px;
-    padding: 10px;
+  #canvas {
+    display: grid;
+    grid-template-columns: repeat(32, 20px);
+    grid-template-rows: repeat(32, 20px);
+    margin: 20px auto;
+    gap: 1px;
   }
   
-  button {
-    margin-top: 10px;
-    padding: 10px 20px;
-  }
-  
-  #output {
-    margin-top: 20px;
-    background: #6d91a5;
-    padding: 15px;
-    border-radius: 5px;
+  .pixel {
+    width: 20px;
+    height: 20px;
+    background: #fff;
+    border: 1px solid #ccc;
+    cursor: pointer;
   }
   
