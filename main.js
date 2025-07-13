@@ -9,14 +9,6 @@ const firebaseConfig = {
   measurementId: "G-RMDN05YXV9"
 };
 
-//
-const pixels = {};
-for (let i = 0; i <= 8191; i++) {
-  pixels[i] = "#ffffff";
-}
-console.log(JSON.stringify(pixels, null, 2));
-//
-
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 
