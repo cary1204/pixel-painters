@@ -45,8 +45,8 @@ h1 {
 #canvas {
   --pixel-size: 5px;
   display: grid;
-  grid-template-columns: repeat(60, var(--pixel-size));
-  grid-template-rows: repeat(45, var(--pixel-size));
+  grid-template-columns: repeat(80, var(--pixel-size));
+  grid-template-rows: repeat(60, var(--pixel-size));
   border: 2px solid #333;
   transition: all 0.2s;
 }
