@@ -1,50 +1,122 @@
 body {
   font-family: sans-serif;
-  background: #1e1e1e;
-  color: #fff;
   margin: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
+  padding: 0;
+  text-align: center;
+  background: #121212;
+  color: white;
+  transition: background 0.2s, color 0.2s;
+}
+
+body.light {
+  background: #f0f0f0;
+  color: #222;
 }
 
 h1 {
-  margin-bottom: 10px;
+  margin: 1rem 0 0.5rem;
 }
 
-#colorPicker {
-  margin: 10px;
-  width: 120px;
-  height: 40px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+#canvasWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 100px;
+  height: calc(100vh - 160px);
+  overflow: hidden;
 }
 
-label {
-  margin-bottom: 20px;
-  font-size: 14px;
+#canvasContainer {
+  overflow: scroll;
+  max-width: 100%;
+  max-height: 100%;
+  border: 2px solid #444;
+  cursor: default;
+}
+
+#canvasContainer.panning {
+  cursor: grab;
+}
+
+#canvasContainer.panning:active {
+  cursor: grabbing;
 }
 
 #canvas {
+  --pixel-size: 5px;
   display: grid;
-  grid-template-columns: repeat(128, 8px);
-  grid-template-rows: repeat(64, 8px);
-  gap: 0;
-  background: #333;
-  padding: 10px;
-  border-radius: 8px;
-  box-shadow: 0 0 20px #00000066;
+  grid-template-columns: repeat(170, var(--pixel-size));
+  grid-template-rows: repeat(85, var(--pixel-size));
+  border: 2px solid #333;
+  transition: all 0.2s;
 }
 
 .pixel {
-  width: 8px;
-  height: 8px;
-  background: #fff;
+  width: var(--pixel-size);
+  height: var(--pixel-size);
+  background: #121212;
+  user-select: none;
 }
 
-.show-grid .pixel {
-  border: 1px solid lightgray;
+.grid .pixel {
+  border: 0.5px solid #2a2a2a;
+}
+
+body.light .pixel {
+  background: #ffffff;
+}
+
+body.light .grid .pixel {
+  border: 0.5px solid #ccc;
+}
+
+#colorBar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #1c1c1c;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0.5rem;
+  border-top: 1px solid #333;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+body.light #colorBar {
+  background: #ddd;
+  color: #000;
+  border-color: #aaa;
+}
+
+#colorPalette {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.color-swatch {
+  width: 24px;
+  height: 24px;
+  border: 2px solid #444;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.color-swatch:hover {
+  border-color: #fff;
+}
+
+#controls {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+#zoomSlider {
+  width: 100px;
 }
