@@ -23,6 +23,9 @@ const zoomSlider = document.getElementById('zoomSlider');
 const panToggle = document.getElementById('togglePan');
 const container = document.getElementById('canvasContainer');
 
+zoomSlider.value = 15;
+canvas.style.setProperty('--pixel-size', `${zoomSlider.value}px`);
+
 gridToggle.addEventListener('change', () => {
   canvas.classList.toggle('grid', gridToggle.checked);
 });
