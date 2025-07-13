@@ -13,7 +13,7 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 
 const width = 80;
-const height = 60;
+const height = 45;
 
 const canvas = document.getElementById('canvas');
 const colorPicker = document.getElementById('colorPicker');
