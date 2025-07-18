@@ -7,7 +7,8 @@
 </head>
 <body>
   <h1>Pixel Painters</h1>
-  <h2> FAMILY-FRIENDLY PLEASE || Drawing over others' work IS ALLOWED</h2>
+  <h2>FAMILY-FRIENDLY PLEASE || Drawing over others' work IS ALLOWED</h2>
+
   <div id="canvasWrapper">
     <div id="canvasContainer">
       <div id="canvas"></div>
@@ -16,6 +17,7 @@
 
   <footer id="colorBar">
     <input type="color" id="colorPicker" value="#000000" />
+
     <div id="colorPalette">
       <div class="color-swatch" data-color="#000000" style="background:#000000;"></div>
       <div class="color-swatch" data-color="#FF0000" style="background:#FF0000;"></div>
@@ -25,6 +27,15 @@
       <div class="color-swatch" data-color="#FF00FF" style="background:#FF00FF;"></div>
       <div class="color-swatch" data-color="#00FFFF" style="background:#00FFFF;"></div>
       <div class="color-swatch" data-color="#FFFFFF" style="background:#FFFFFF;"></div>
+
+      <div id="customColorControls">
+        <span id="saveCustomColor" class="color-action">🎨 Save Color</span>
+      </div>
+
+      <div id="customColorsContainer">
+        <div id="customColors"></div>
+      </div>
+      </div>
     </div>
 
     <div id="controls">

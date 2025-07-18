@@ -37,7 +37,6 @@ h1 {
 #canvasContainer.panning {
   cursor: grab;
 }
-
 #canvasContainer.panning:active {
   cursor: grabbing;
 }
@@ -65,7 +64,6 @@ h1 {
 body.light .pixel {
   background: #ffffff;
 }
-
 body.light .grid .pixel {
   border: 0.5px solid #ccc;
 }
@@ -94,8 +92,10 @@ body.light #colorBar {
 
 #colorPalette {
   display: flex;
-  gap: 0.5rem;
+  flex-direction: row;
+  gap: 0.4rem;
   flex-wrap: wrap;
+  align-items: center;
 }
 
 .color-swatch {
@@ -105,9 +105,52 @@ body.light #colorBar {
   cursor: pointer;
   border-radius: 4px;
 }
-
 .color-swatch:hover {
   border-color: #fff;
+}
+
+#customColorsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+}
+#customColors {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.custom-color-swatch {
+  width: 24px;
+  height: 24px;
+  border: 2px dashed #666;
+  border-radius: 4px;
+  cursor: pointer;
+  background: transparent;
+  transition: border-color 0.2s;
+}
+.custom-color-swatch:hover {
+  border-color: #fff;
+}
+body.light .custom-color-swatch {
+  border-color: #aaa;
+}
+
+.color-action {
+  cursor: pointer;
+  background: #444;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  user-select: none;
+  transition: background 0.2s, color 0.2s;
+}
+.color-action:hover {
+  background: #666;
+}
+.color-action.active {
+  background: #00aa88;
+  color: white;
 }
 
 #controls {
@@ -116,7 +159,6 @@ body.light #colorBar {
   align-items: center;
   flex-wrap: wrap;
 }
-
 #zoomSlider {
   width: 100px;
 }

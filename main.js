@@ -38,10 +38,8 @@ themeToggle.addEventListener('change', () => {
 zoomSlider.addEventListener('input', () => {
   canvas.style.setProperty('--pixel-size', `${zoomSlider.value}px`);
 });
-canvas.style.setProperty('--pixel-size', `${zoomSlider.value}px`);
 
 let isDrawing = false;
-
 for (let y = 0; y < height; y++) {
   for (let x = 0; x < width; x++) {
     const pixel = document.createElement('div');
@@ -59,7 +57,6 @@ for (let y = 0; y < height; y++) {
     });
   }
 }
-
 canvas.addEventListener('mousedown', function() {
   if (panToggle.checked) return;
   isDrawing = true;
@@ -92,15 +89,54 @@ document.querySelectorAll('.color-swatch').forEach(swatch => {
   });
 });
 
+const saveButton = document.getElementById('saveCustomColor');
+const customColorsContainer = document.getElementById('customColors');
+let isSavingCustomColor = false;
+const NUM_CUSTOM_COLORS = 6;
+
+saveButton.addEventListener('click', () => {
+  isSavingCustomColor = !isSavingCustomColor;
+  saveButton.classList.toggle('active', isSavingCustomColor);
+});
+
+function setupCustomColors() {
+  for (let i = 0; i < NUM_CUSTOM_COLORS; i++) {
+    const slot = document.createElement('div');
+    slot.classList.add('custom-color-swatch');
+    slot.dataset.index = i;
+
+    const saved = localStorage.getItem(`customColor_${i}`);
+    if (saved) {
+      slot.style.background = saved;
+      slot.dataset.color = saved;
+    }
+
+    slot.addEventListener('click', () => {
+      if (isSavingCustomColor) {
+        const newColor = colorPicker.value;
+        slot.style.background = newColor;
+        slot.dataset.color = newColor;
+        localStorage.setItem(`customColor_${i}`, newColor);
+        isSavingCustomColor = false;
+        saveButton.classList.remove('active');
+      } else {
+        if (slot.dataset.color) {
+          colorPicker.value = slot.dataset.color;
+        }
+      }
+    });
+
+    customColorsContainer.appendChild(slot);
+  }
+}
+
+setupCustomColors();
+
 let isPanning = false;
 let startX, startY, scrollLeft, scrollTop;
 
 panToggle.addEventListener('change', () => {
-  if (panToggle.checked) {
-    container.classList.add('panning');
-  } else {
-    container.classList.remove('panning');
-  }
+  container.classList.toggle('panning', panToggle.checked);
 });
 
 container.addEventListener('mousedown', (e) => {
@@ -112,7 +148,6 @@ container.addEventListener('mousedown', (e) => {
   scrollLeft = container.scrollLeft;
   scrollTop = container.scrollTop;
 });
-
 container.addEventListener('mouseleave', () => {
   isPanning = false;
   container.classList.remove('panning');
@@ -126,8 +161,8 @@ container.addEventListener('mousemove', (e) => {
   e.preventDefault();
   const x = e.pageX - container.offsetLeft;
   const y = e.pageY - container.offsetTop;
-  const walkX = (x - startX);
-  const walkY = (y - startY);
+  const walkX = x - startX;
+  const walkY = y - startY;
   container.scrollLeft = scrollLeft - walkX;
   container.scrollTop = scrollTop - walkY;
 });
