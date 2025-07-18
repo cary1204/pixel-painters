@@ -153,6 +153,23 @@ body.light .custom-color-swatch {
   color: white;
 }
 
+body.light .color-action {
+  cursor: pointer;
+  background: #b8b8b8;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  user-select: none;
+  transition: background 0.2s, color 0.2s;
+}
+body.light .color-action:hover {
+  background: #969595;
+}
+body.light .color-action.active {
+  background: #00aa88;
+  color: white;
+}
+
 #controls {
   display: flex;
   gap: 1rem;
