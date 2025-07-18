@@ -166,3 +166,44 @@ container.addEventListener('mousemove', (e) => {
   container.scrollLeft = scrollLeft - walkX;
   container.scrollTop = scrollTop - walkY;
 });
+
+const saveBtn = document.getElementById('saveCanvasBtn');
+
+saveBtn.addEventListener('click', () => {
+  const scale = 20;
+
+  const exportWidth = width * scale;
+  const exportHeight = height * scale;
+
+  const exportCanvas = document.createElement('canvas');
+  exportCanvas.width = exportWidth;
+  exportCanvas.height = exportHeight;
+  const ctx = exportCanvas.getContext('2d');
+
+  for (let y = 0; y < height; y++) {
+    for (let x = 0; x < width; x++) {
+      const pixel = document.querySelector(`.pixel[data-x="${x}"][data-y="${y}"]`);
+      let color = pixel ? pixel.style.backgroundColor : null;
+
+      if (!color || color === '' || color === 'transparent') {
+        ctx.clearRect(x * scale, y * scale, scale, scale);
+      } else {
+        ctx.fillStyle = color;
+        ctx.fillRect(x * scale, y * scale, scale, scale);
+      }
+    }
+  }
+
+  exportCanvas.toBlob((blob) => {
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'pixel-painters.png';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }, 'image/png');
+});
+
+
